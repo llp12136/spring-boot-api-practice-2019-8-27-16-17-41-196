@@ -28,23 +28,16 @@ public class employeeController {
         return ResponseEntity.ok( employees);
     }
     //查询所有男性员工
-    @GetMapping()
-    public ResponseEntity<Employee> queryEmployee(@RequestParam("gender") String gender) {
-        Employee result = new Employee();
-//      List<Employee> employeellist = new ArrayList<>();
-//      Employee employee = new Employee();
-//      employee.setId(1);
-//      employee.setName("xiaoming");
-//      employee.setAge(20);
-//      employee.setGender("Male");
-//        employeellist.add(employee);
-        for(Employee e:employees) {
-            if (gender.equals(e.getGender())) {
-                result = e;
-            }
-        }
-        return ResponseEntity.ok( result);
-    }
+//    @GetMapping()
+//    public ResponseEntity<Employee> queryEmployee(@RequestParam("gender") String gender) {
+//        Employee result = new Employee();
+//        for(Employee e:employees) {
+//            if (gender.equals(e.getGender())) {
+//                result = e;
+//            }
+//        }
+//        return ResponseEntity.ok( result);
+//    }
     //获得某个特定员工
     @GetMapping(path = "/{id}")
     public ResponseEntity<Employee> getEmployeeID(@PathVariable int id) {
@@ -57,6 +50,13 @@ public class employeeController {
             }
         }
         return ResponseEntity.ok(result);
+    }
+    //分页查询，page等于1，pageSize等于5
+    @GetMapping()
+    public ResponseEntity<List<Employee>> queryEmployeepage(@RequestBody int page, int pageSize) {
+        int temp = pageSize*(page-1);
+        List<Employee> pageEmpioyee = employees.subList(temp,temp+pageSize-1);
+        return ResponseEntity.ok( pageEmpioyee);
     }
 //添加一名员工
     @PostMapping()
