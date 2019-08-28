@@ -1,6 +1,7 @@
 package com.tw.apistackbase.controller;
 
 import com.tw.apistackbase.entity.Employee;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,7 +30,7 @@ public class employeeController {
     }
     //查询所有男性员工
 //    @GetMapping()
-//    public ResponseEntity<Employee> queryEmployee(@RequestParam("gender") String gender) {
+//    public ResponseEntity<Employee> queryEmployee(@RequestParam(value = "gender",required = false) String gender) {
 //        Employee result = new Employee();
 //        for(Employee e:employees) {
 //            if (gender.equals(e.getGender())) {
@@ -52,12 +53,12 @@ public class employeeController {
         return ResponseEntity.ok(result);
     }
     //分页查询，page等于1，pageSize等于5
-    @GetMapping()
-    public ResponseEntity<List<Employee>> queryEmployeepage(@RequestBody int page, int pageSize) {
-        int temp = pageSize*(page-1);
-        List<Employee> pageEmpioyee = employees.subList(temp,temp+pageSize-1);
-        return ResponseEntity.ok( pageEmpioyee);
-    }
+//    @GetMapping()
+//    public ResponseEntity<List<Employee>> queryEmployeepage(@RequestBody int page, int pageSize) {
+//        int temp = pageSize*(page-1);
+//        List<Employee> pageEmpioyee = employees.subList(temp,temp+pageSize-1);
+//        return ResponseEntity.ok( pageEmpioyee);
+//    }
 //添加一名员工
     @PostMapping()
     public ResponseEntity<List<Employee>> addEmployee(@RequestBody Employee employee) {
@@ -80,13 +81,13 @@ public class employeeController {
         }
     //delete一名员工
     @DeleteMapping ("/{id}")
-    public ResponseEntity<List<Employee>> deleteEmployee(@PathVariable int id) {
+    public ResponseEntity deleteEmployee(@PathVariable int id) {
 
         for(Employee e:employees) {
             if (id ==(e.getId())) {
                 employees.remove(e);
             }
         }
-        return ResponseEntity.ok(employees);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 }

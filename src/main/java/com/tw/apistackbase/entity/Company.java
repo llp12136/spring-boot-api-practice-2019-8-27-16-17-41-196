@@ -7,7 +7,7 @@ public class Company {
     public Company() {
     }
 
-    public Company(String name,String id) {
+    public Company(String id,String name) {
         this.name = name;
         this.id = id;
     }

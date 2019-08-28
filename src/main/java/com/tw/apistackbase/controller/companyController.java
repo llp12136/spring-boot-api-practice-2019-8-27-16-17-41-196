@@ -40,12 +40,12 @@ public class companyController {
 
 
     //分页查询 ，如果page等于1，pageSize等于5，它将公司列表中的数据从索引0返回到索引4。
-    @GetMapping()
-    public ResponseEntity<List<Company>> queryEmployeepage(@RequestBody int page, int pageSize) {
-        int temp = pageSize*(page-1);
-        List<Company> pageCompany = companies.subList(temp,temp+pageSize-1);
-        return ResponseEntity.ok( pageCompany);
-    }
+//    @GetMapping()
+//    public ResponseEntity<List<Company>> queryEmployeepage(@RequestBody int page, int pageSize) {
+//        int temp = pageSize*(page-1);
+//        List<Company> pageCompany = companies.subList(temp,temp+pageSize-1);
+//        return ResponseEntity.ok( pageCompany);
+//    }
     //添加一个公司
     @PostMapping()
     public ResponseEntity<List<Company>> addCompany(@RequestBody Company company) {
