@@ -1,8 +1,19 @@
 package com.tw.apistackbase.entity;
 
+import java.util.List;
+
 public class Company {
     String id;
     String name;
+    List<Employee> employees ;
+
+    public List<Employee> getEmployees() {
+        return employees;
+    }
+
+    public void setEmployees(List<Employee> employees) {
+        this.employees = employees;
+    }
 
     public Company() {
     }
@@ -10,6 +21,7 @@ public class Company {
     public Company(String id,String name) {
         this.name = name;
         this.id = id;
+        //this.employees = employees;
     }
 
     public String getId() {
